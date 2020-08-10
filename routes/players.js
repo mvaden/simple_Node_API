@@ -18,7 +18,20 @@ router.get('/:id', (req, res) => {
 });
 
 // Create one player
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const player = new Player({
+        name: req.body.name,
+        age: req.body.age,
+        height: req.body.height,
+        weight: req.body.weight,
+        position: req.body.position
+    })
+    try {
+        const newPlayer = await player.save();
+        res.status(201).json(newPlayer);
+    } catch (err) {
+        res.status(400).json({ message: err.message})
+    }
 });
 
 // Update one player

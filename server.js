@@ -16,5 +16,8 @@ db.once('open', () => console.log("Connected to MongoDB Atlas."));
 
 app.use(express.json());
 
+const playersRouter = require("./routes/players")
+app.use('/players', playersRouter); // localhost:3000/players/ (or anything after '/players/...')
+
 app.listen(process.env.PORT || 3000, () => console.log(`Server running on Port ${process.env.PORT}.`));
 

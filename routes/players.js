@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
 });
 
 // Get one player
-router.get('/:id', (req, res) => {
+router.get('/:id', getPlayer, (req, res) => {
+    res.json(res.player);
 });
 
 // Create one player

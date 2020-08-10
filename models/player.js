@@ -21,6 +21,6 @@ const playerSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
 
 module.exports = mongoose.model("players", playerSchema);

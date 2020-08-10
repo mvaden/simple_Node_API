@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         const players = await Player.find();
         res.json(players);
     } catch (err) {
-        res.stat(500).json({ message: err.message })
+        res.stat(500).json({ message: err.message });
     }
 });
 
@@ -26,12 +26,12 @@ router.post('/', async (req, res) => {
         height: req.body.height,
         weight: req.body.weight,
         position: req.body.position
-    })
+    });
     try {
         const newPlayer = await player.save();
         res.status(201).json(newPlayer);
     } catch (err) {
-        res.status(400).json({ message: err.message})
+        res.status(400).json({ message: err.message});
     }
 });
 
@@ -58,7 +58,7 @@ router.patch('/:id', getPlayer, async (req, res) => {
         const updatedPlayer = await res.player.save();
         res.status(200).json(updatedPlayer);
     } catch (err) {
-        res.status(400).json({ message: err.message})
+        res.status(400).json({ message: err.message});
     }
 });
 
@@ -66,9 +66,9 @@ router.patch('/:id', getPlayer, async (req, res) => {
 router.delete('/:id', getPlayer, async (req, res) => {
     try {
         await res.player.remove();
-        res.status(202).json({ message: "Player has been deleted, successfully."})
+        res.status(202).json({ message: "Player has been deleted, successfully."});
     } catch (err) {
-        res.status(500).json({ message: err.message })
+        res.status(500).json({ message: err.message });
     }
     res.send('hello delete one')
 });
@@ -77,12 +77,12 @@ router.delete('/:id', getPlayer, async (req, res) => {
 async function getPlayer(req, res, next) {
     let player;
     try {
-        player = await Player.findById(req.params.id)
+        player = await Player.findById(req.params.id);
         if (player == null) {
             return res.status(404).json({ message: "Cannot find the player that you are searching for." });
         }
     } catch (err) {
-        return res.status(500).json({ message: err.message })
+        return res.status(500).json({ message: err.message });
     }
     res.player = player;
     next();

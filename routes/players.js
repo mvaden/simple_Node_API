@@ -29,5 +29,19 @@ router.patch('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
 });
 
+// middleware: get a player by their
+async function getPlayer(req, res, next) {
+    let player;
+    try {
+        player = await Player.findById(req.params.id);
+        if (player == null) {
+            return res.status(404).json({ message: "Cannot find the player that you are searching for." });
+        }
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+    res.player = player;
+    next();
+}
 
 module.exports = router;

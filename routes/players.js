@@ -36,7 +36,30 @@ router.post('/', async (req, res) => {
 });
 
 // Update one player
-router.patch('/:id', (req, res) => {
+router.patch('/:id', getPlayer, async (req, res) => {
+    switch (true) {
+        case req.body.name != null:
+            res.player.name = req.body.name;
+            break;
+        case req.body.age != null:
+            res.player.age = req.body.age;
+            break;
+        case req.body.height != null:
+            res.player.height = req.body.height;
+            break;
+        case req.body.weight != null:
+            res.player.weight = req.body.weight;
+            break;
+        case req.body.position != null:
+            res.player.position = req.body.position;
+            break;
+    }
+    try {
+        const updatedPlayer = await res.player.save();
+        res.status(200).json(updatedPlayer);
+    } catch (err) {
+        res.status(400).json({ message: err.message})
+    }
 });
 
 // Delete one player

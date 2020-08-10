@@ -4,7 +4,13 @@ const Player = require('../models/player');
 
 
 // Get all players
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const players = await Player.find();
+        res.json(players);
+    } catch (err) {
+        res.stat(500).json({ message: err.message })
+    }
 });
 
 // Get one player

@@ -16,5 +16,5 @@ db.once('open', () => console.log("Connected to MongoDB Atlas."));
 
 db.once('open', () => console.log("Connected to MongoDB Atlas."));
 
-app.listen(3000, () => console.log("Server running on Port 3000."));
+app.listen(process.env.PORT || 3000, () => console.log(`Server running on Port ${process.env.PORT}.`));
 

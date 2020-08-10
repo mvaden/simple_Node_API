@@ -40,7 +40,14 @@ router.patch('/:id', (req, res) => {
 });
 
 // Delete one player
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getPlayer, async (req, res) => {
+    try {
+        await res.player.remove();
+        res.status(202).json({ message: "Player has been deleted, successfully."})
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+    res.send('hello delete one')
 });
 
 // middleware: get a player by their

@@ -1,6 +1,6 @@
 # Basic REST API
 
-This repo contains is a simple example for developing a RESTful API. It is meant to serve as a basic demonstration for how to design a simple backend application with a database that can rapidly be up and running with few dependencies.
+This repo contains is a simple example for developing a RESTful API. It is meant to serve as a basic demonstration for how to design a simple backend application that performs CRUD operations a database that can rapidly be up and running with few dependencies.
 
 ## The core stack:
 - [Node.js](https://nodejs.org/en/) - the runtime environment for the application
